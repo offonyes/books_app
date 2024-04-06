@@ -35,9 +35,9 @@ python manage.py runserver
 ### Authors
 
 - `/authors/`: View all authors.
-<p align="center">
-  <img src="[readme_images\author_page.png](https://github.com/offonyes/books_app/blob/main/readme_images/author_page.png)" alt="authors_page">
-</p>
+
+- 
+![authors_page](https://github.com/offonyes/books_app/blob/main/readme_images/author_page.png)
 
 - `/authors/<author_name>/`: View details of a specific author by their Name. Or click on author.
 ![authors_books_page](https://github.com/offonyes/books_app/blob/main/readme_images/author_books_page.png)
