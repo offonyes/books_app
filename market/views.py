@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.shortcuts import render
 from market.models import Books
 
@@ -15,9 +15,13 @@ def book_list(request):
 
 
 def book_detail(request, book_id):
-    book = Books.objects.get(id=book_id)
-    context = {'id': book.id, 'name': book.name, 'page_count': book.page_count, 'category': book.category,
+    try:
+        book = Books.objects.get(id=book_id)
+        context = {'id': book.id, 'name': book.name, 'page_count': book.page_count, 'category': book.category,
                'author_name': book.author_name, 'price': str(book.price), 'image': book.image.url}
+    except Books.DoesNotExist:
+        context= {'error_message': 'object not found'}
+    
     return JsonResponse(context)
 
 
