@@ -25,17 +25,19 @@ python manage.py runserver
    ```
 3. Or use login admin, password admin
 
-## Endpoints
 
 ### Books
+- Main page 
+- ![authors_books_page](https://github.com/offonyes/books_app/blob/main/readme_images/main_page.png)
 
 - `/books/`: View all books available in the bookstore.
+- ![authors_books_page](https://github.com/offonyes/books_app/blob/main/readme_images/books_page.png)
+
 - `/books/<book_id>/`: View details of a specific book by its ID.
 
 ### Authors
 
 - `/authors/`: View all authors.
-- ![authors_page](https://github.com/offonyes/books_app/blob/main/readme_images/author_page.png)
+- ![authors_page](https://github.com/offonyes/books_app/blob/main/readme_images/authors_page.png)
 
-- `/authors/<author_name>/`: View details of a specific author by their Name. Or click on author.
-- ![authors_books_page](https://github.com/offonyes/books_app/blob/main/readme_images/author_books_page.png)
+- `/authors/<author_id>/`: View details of a specific author by its ID.
