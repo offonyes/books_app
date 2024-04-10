@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная страница</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .main-content {
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #333;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #666;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  {% include 'menu.html' %}
+  <div class="main-content">
+    <h1>Welcome to our site!</h1>
+    <p>Here you can find a huge selection of books and authors. Use our convenient menu to navigate the site or use the search.</p>
+  </div>
+</body>
+</html>
