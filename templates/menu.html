@@ -1,78 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    header {
-        background-color: #872929;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #fff;
-        border-bottom: 1px solid #ddd;
-        padding: 20px 40px;
-      }
-      
-      header ul.menu {
-        list-style: none;
-        display: flex;
-        margin-right: auto;
-      }
-      
-      header ul.menu li {
-        margin-left: 10px;
-      }
-      
-      header a {
-        text-decoration: none;
-        color: #872929; 
-      }
-      
-      header a:hover {
-        color: black; 
-      }
-      
-      header form {
-        display: flex;
-        align-items: center;
-      }
-      
-      header input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      
-      header button {
-        background-color: #000000; 
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      
-      header button:hover {
-        background-color: #525252; 
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header {
+            font-family: Arial, sans-serif;
+            background-color: #c9efaf;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 40px;
+        }
+        header ul.menu {
+            list-style: none;
+            display: flex;
+            margin-right: auto;
+        }
+        header ul.menu li {
+            margin-left: 10px;
+        }
+        header a {
+            text-decoration: none;
+            color: #090909; 
+        }
+        header a:hover {
+            color: black; 
+        }
+        header form {
+            display: flex;
+            align-items: center;
+        }
+        header input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        header button {
+            background-color: #000000; 
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        header button:hover {
+            background-color: #525252; 
+        }
+    </style>
+    <title>Menu</title>
 </head>
 <body>
-  {% load static %}
-  <header>
-    <a href="/">
-      <img src="{% static 'logo.png' %}" alt="Logo" width="40" height="40">
-    </a>
-    <ul class="menu">
-      <li><a href="/books/">Books</a></li>
-      <li><a href="/authors/">Authors</a></li>
-      <li><a href="/about/">About</a></li>
-    </ul>
-    <form action="#">
-      <input type="text" placeholder="Search book here">
-      <button type="submit">In Future</button>
-    </form>
-  </header>
+    {% load static %}
+    <header>
+        <a href="/">
+        <img src="{% static 'logo.png' %}" alt="Logo" width="40" height="40">
+        </a>
+        <ul class="menu">
+        <li><a href="/books/">Books</a></li>
+        <li><a href="/authors/">Authors</a></li>
+        <li><a href="/about/">About</a></li>
+        </ul>
+        <form action="{% url 'search_results' %}" method="GET">
+            <label>
+                <input type="text" name="search" placeholder="Search book here">
+            </label>
+            <button type="submit">Search</button>
+        </form>
+    </header>
 </body>
 </html>

@@ -10,6 +10,8 @@ urlpatterns = [
     path('books/<int:book_id>/', book_detail, name='book_detail'),
     path('authors/', author_list, name='author_list'),
     path('author/<int:author_id>/', author_detail, name='author_detail'),
+    path('about/', about_page, name='about'),
+    path('search/', search_results, name='search_results'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'css\for_list.css' %}">
+</head>
+<body>
+    {% include 'menu.html' %}
+    <div class="main-content">
+        <h1>Search Results for "{{ query }}"</h1>
+        <div class="books-container">
+        {% for book in books %}
+        <div class="book">
+            <div class="book-info">
+                <h2>
+                    <a href="{% url 'book_detail' book.id %}">
+                    {{ book.name }}
+                    </a>
+                </h2>
+            </div>
+            <img src="{{ book.image.url }}" alt="{{ book.name }}">
+        </div>
+        {% endfor %}
+        </div>
+        <div class="pagination">
+            {% if books.has_previous %}
+            <a href="?page=1{% if query %}&search={{ query }}{% endif %}">First</a>
+            <a href="?page={{ books.previous_page_number }}{% if query %}&search={{ query }}{% endif %}">Previous</a>
+        {% endif %}
+        
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+        
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}{% if query %}&search={{ query }}{% endif %}">Next</a>
+            <a href="?page={{ books.paginator.num_pages }}{% if query %}&search={{ query }}{% endif %}">Last</a>
+        {% endif %}
+        </div>
+    </div>
+    </body>
+</html>
+<body>

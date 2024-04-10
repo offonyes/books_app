@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ author.name }}</title>
+    <link rel="stylesheet" href="{% static 'css\for_one.css' %}"> 
+</head>
+<body>
+    {% include 'menu.html' %}
+    <div class="container">
+        <img src="{{ author.image.url }}" alt="{{ author.name }}">
+        <div class="author-info">
+            <h1>{{ author.name }}</h1>
+            <p>Books in DB: {{ author.number_of_books }}</p>
+            <p>Description: {{ author.description }}</p>
+            <a href="{{ author.wiki_page }}" target="_blank">More information</a>
+        </div>
+    </div>
+</body>
+</html>

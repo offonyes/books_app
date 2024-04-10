@@ -6,8 +6,8 @@ from books_store.models import Books, Author
 # Register your models here.
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['book_name', 'author', 'category', 'price', 'image_preview']
-    search_fields = ['book_name', 'author']
+    list_display = ['name', 'author', 'category', 'price', 'image_preview']
+    search_fields = ['name', 'author']
     list_filter = ['category', 'price']
     list_editable = ['price']
 
@@ -22,6 +22,7 @@ class BookAdmin(admin.ModelAdmin):
 
     image_preview.short_description = 'Image'
 
+
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['name', 'description', 'number_of_books', 'image_preview']
     search_fields = ['name']
@@ -34,6 +35,7 @@ class AuthorAdmin(admin.ModelAdmin):
             return 'No Image'
 
     image_preview.short_description = 'Image'
+
 
 admin.site.register(Books, BookAdmin)
 admin.site.register(Author, AuthorAdmin)

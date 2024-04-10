@@ -2,43 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% comment %} <title>List of Books</title> {% endcomment %}
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title> 
+    <link rel="stylesheet" href="{% static 'css\for_list.css' %}">
 </head>
 <body>
-  {% include 'menu.html' %}
-
-  <div class="main-content">
-    <h1>Book List</h1>
-    <div class="books-container">
+    {% include 'menu.html' %}
+    <div class="main-content">
+        <h1>{{ title }}</h1> <div class="books-container">
         {% for p in page %}
         <div class="book">
             <div class="book-info">
-                <h2><a href="{% url 'book_detail' p.id %}">{{ p.book_name }}</a></h2>
+            <h2><a href="{% url 'book_detail' p.id %}">{{ p.name }}</a></h2>
             </div>
-            <img src="{{ p.image.url }}" alt="{{ p.book_name }}">
+            <img src="{{ p.image.url }}" alt="{{ p.name }}">
         </div>
         {% endfor %}
-    </div>
+        </div>
 
-    <div class="pagination">
-          {% if page_obj.has_previous %}
+        <div class="pagination">
+        {% if page_obj.has_previous %}
             <a href="?page=1">First</a>
             <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-          {% endif %}
-          <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
-          {% if page_obj.has_next %}
+        {% endif %}
+        <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">Next</a>
             <a href="?page={{ paginator.num_pages }}">Last</a>
-          {% endif %}
-      </div>
-      
+        {% endif %}
+        </div>
+
     </div>
-  </div>
-
-</body>
+    </body>
 </html>
-
-

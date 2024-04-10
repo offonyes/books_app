@@ -2,10 +2,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>List of Books</title>
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\for_one.css' %}"> 
+    <title>{{ book.name }}</title>
+    <style>
+        a {
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-  {% include 'menu.html' %}
+    {% include 'menu.html' %}
+    <div class="container">
+        <img src="{{ book.image.url }}" alt="{{ book.name }}">
+        <div class="book-info">
+            <h1>{{ book.name }}</h1>
+            <a href="{% url 'author_detail' book.author.id %}"> Author:{{ book.author.name }}</a>
+            <p>Category: {{ book.category }}</p>
+            <p>Page Count: {{ book.page_count }}</p>
+            <p>Price: ${{ book.price }}</p>
+        </div>
+    </div>
+</body>
+</html>

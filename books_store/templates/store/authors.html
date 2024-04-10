@@ -2,39 +2,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>List of Authors</title>
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Authors</title>
+    <link rel="stylesheet" href="{% static 'css\for_list.css' %}">
 </head>
 <body>
-  {% include 'menu.html' %}
+    {% include 'menu.html' %}
 
-  <div class="main-content">
-    <h1>Author List</h1>
-    <div class="books-container">
-        {% for p in page %}
-        <div class="book">
-            <div class="book-info">
-                <h2><a href="{% url 'author_detail' p.id %}">{{ p.name }}</a></h2>
+    <div class="main-content">
+        <h1>Author List</h1>
+        <div class="books-container">
+            {% for p in page %}
+            <div class="book">
+                <div class="book-info">
+                    <h2><a href="{% url 'author_detail' p.id %}">{{ p.name }}</a></h2>
+                </div>
+                <img src="{{ p.image.url }}" alt="{{ p.name }}">
             </div>
-            <img src="{{ p.image.url }}" alt="{{ p.name }}">
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
 
-    <div class="pagination">
-      {% if page.has_previous %}
-      <a href="?page=1">First</a>
-      <a href="?page={{ page.previous_page_number }}">Previous</a>
-      {% endif %}
-      <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
-      {% if page.has_next %}
-      <a href="?page={{ page.next_page_number }}">Next</a>
-      <a href="?page={{ page.paginator.num_pages }}">Last</a>
-      {% endif %}
+        <div class="pagination">
+            {% if page.has_previous %}
+            <a href="?page=1">First</a>
+            <a href="?page={{ page.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">Next</a>
+            <a href="?page={{ page.paginator.num_pages }}">Last</a>
+        {% endif %}
+        </div>
     </div>
-  </div>
 
 </body>
 </html>
