@@ -5,34 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title> 
-    <link rel="stylesheet" href="{% static 'css\for_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/for_list.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}">
+    <style>
+        select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 80%;
+        }
+        button {
+            background-color: #000000; 
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #525252; 
+        }
+    </style>
 </head>
 <body>
     {% include 'menu.html' %}
     <div class="main-content">
-        <h1>{{ title }}</h1> <div class="books-container">
-        {% for p in page %}
-        <div class="book">
-            <div class="book-info">
-            <h2><a href="{% url 'book_detail' p.id %}">{{ p.name }}</a></h2>
+        <h1>{{ title }}</h1> 
+        <form method="get" class="filter-form">
+            <label for="category">Category:</label>
+            <select id="category" class="form-control" name="category">
+                <option value="">All</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}" {% if category.id == selected_category %}
+                    selected 
+                    {% endif %}>
+                    {{ category.name }}
+                </option>
+                {% endfor %}
+                
+            </select>
+            <label for="author">Author:</label>
+            <select name="author" id="author">
+                <option value="">All</option>
+                {% for author in authors %}
+                    <option value="{{ author.id }}" {% if author.id == selected_author %} selected {% endif %}>{{ author.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+        <div class="books-container">
+            {% for p in page %}
+            <div class="book">
+                <div class="book-info">
+                    <h2><a href="{% url 'book_detail' p.id %}">{{ p.name }}</a></h2>
+                </div>
+                <img src="{{ p.image.url }}" alt="{{ p.name }}">
             </div>
-            <img src="{{ p.image.url }}" alt="{{ p.name }}">
+            {% endfor %}
         </div>
-        {% endfor %}
-        </div>
-
         <div class="pagination">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">First</a>
-            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
-        <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a href="?page={{ paginator.num_pages }}">Last</a>
-        {% endif %}
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_author %}&author={{ selected_author }}{% endif %}">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_author %}&author={{ selected_author }}{% endif %}">Previous</a>
+            {% endif %}
+            <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_author %}&author={{ selected_author }}{% endif %}">Next</a>
+                <a href="?page={{ paginator.num_pages }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_author %}&author={{ selected_author }}{% endif %}">Last</a>
+            {% endif %}
         </div>
-
     </div>
-    </body>
+</body>
 </html>

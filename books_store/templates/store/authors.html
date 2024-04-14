@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Authors</title>
     <link rel="stylesheet" href="{% static 'css\for_list.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}">
 </head>
 <body>
     {% include 'menu.html' %}
@@ -24,16 +25,19 @@
         </div>
 
         <div class="pagination">
-            {% if page.has_previous %}
-            <a href="?page=1">First</a>
-            <a href="?page={{ page.previous_page_number }}">Previous</a>
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a href="?page={{ paginator.num_pages }}">Last</a>
+                {% endif %}
             {% endif %}
-            <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
-            {% if page.has_next %}
-            <a href="?page={{ page.next_page_number }}">Next</a>
-            <a href="?page={{ page.paginator.num_pages }}">Last</a>
-        {% endif %}
         </div>
+        
     </div>
 
 </body>

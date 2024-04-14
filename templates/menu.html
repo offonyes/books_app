@@ -1,10 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        header {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+          }
+        .menu-container {
             font-family: Arial, sans-serif;
             background-color: #c9efaf;
             display: flex;
@@ -13,31 +19,32 @@
             border-bottom: 1px solid #ddd;
             padding: 20px 40px;
         }
-        header ul.menu {
+        .menu-container ul.menu {
             list-style: none;
             display: flex;
             margin-right: auto;
         }
-        header ul.menu li {
+        .menu-container ul.menu li {
             margin-left: 10px;
         }
-        header a {
+        .menu-container a {
             text-decoration: none;
             color: #090909; 
+            font-weight: normal;
         }
-        header a:hover {
+        .menu-container a:hover {
             color: black; 
         }
-        header form {
+        .menu-container form {
             display: flex;
             align-items: center;
         }
-        header input {
+        .menu-container input {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        header button {
+        .menu-container button {
             background-color: #000000; 
             color: #fff;
             padding: 10px 20px;
@@ -45,22 +52,21 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        header button:hover {
+        .menu-container button:hover {
             background-color: #525252; 
         }
     </style>
     <title>Menu</title>
 </head>
 <body>
-    {% load static %}
-    <header>
+    <div class="menu-container">
         <a href="/">
-        <img src="{% static 'logo.png' %}" alt="Logo" width="40" height="40">
+            <img src="{% static 'logo.png' %}" alt="Logo" width="40" height="40">
         </a>
         <ul class="menu">
-        <li><a href="/books/">Books</a></li>
-        <li><a href="/authors/">Authors</a></li>
-        <li><a href="/about/">About</a></li>
+            <li><a href="/books/">Books</a></li>
+            <li><a href="/authors/">Authors</a></li>
+            <li><a href="/about/">About</a></li>
         </ul>
         <form action="{% url 'search_results' %}" method="GET">
             <label>
@@ -68,6 +74,6 @@
             </label>
             <button type="submit">Search</button>
         </form>
-    </header>
+    </div>
 </body>
 </html>
