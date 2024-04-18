@@ -1,4 +1,4 @@
-# Multithreaded JSON Fetcher
+# Book Store
 ## Prerequisites
 
 - Python 3.12
