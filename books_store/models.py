@@ -37,7 +37,9 @@ class Category(models.Model):
 class Books(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name=_('Book Name'))
     page_count = models.IntegerField(null=True, verbose_name=_('Page Count'))
+    # Many-to-Many
     category = models.ManyToManyField(Category, related_name='books', verbose_name=_('Category'))
+    # Foreign Key
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books', verbose_name=_('Author'))
     price = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, verbose_name=_('Price'))
     cover_type = models.CharField(max_length=10, choices=COVER_TYPES, default='soft', verbose_name=_('Cover Type'))

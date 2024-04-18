@@ -97,12 +97,6 @@ def about_page(request):
     return render(request, 'store/about.html')
 
 
-def book_list1(request):
-    book = Books.objects.all()
-    serialized_book = serialize('json', book)
-    return JsonResponse(serialized_book, safe=False)
-
-
 def book_detail(request, book_id):
     book = get_object_or_404(Books, pk=book_id)
     return render(request, 'store/book.html', {'book': book})
